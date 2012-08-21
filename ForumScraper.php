@@ -101,7 +101,7 @@ class ForumScraper
 
 $default_opts = array(
   'http'=>array(
-    'proxy'=>'tcp://localhost:8228',
+    //'proxy'=>'tcp://localhost:8228',
     'request_fulluri' => true,
 	'user_agent'=>'RSSCreator/2.0'
   )
@@ -112,6 +112,6 @@ $default = stream_context_set_default($default_opts);
 $log = KLogger::instance('logs', KLogger::DEBUG);
 $db = DB::instance();
 
-$url = 'http://www.janedoe.eu/forums';
+$url = 'http://yoursite.wowstead.com/forums';
 
 ForumScraper::instance($url)->startCrawl();
