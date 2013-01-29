@@ -25,7 +25,7 @@ class SubForumPage extends Scraper
 		$this->log->logDebug("Processing forum page $this->url");
 		
 		// fetch url
-		$html = file_get_html($this->url);
+		$html = file_get_html(preg_replace('/#forum-threads/i', '', $this->url));
 		
 		// The pagiation changes if more then a certain number of pages exists. So
 		// do a scan and add any we've missed.
