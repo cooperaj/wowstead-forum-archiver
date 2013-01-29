@@ -32,7 +32,7 @@ class ForumPostPage extends Scraper
 		if (!$html)
 		{
 			$cleanup = false;
-			$html = file_get_html($this->url);
+			$html = file_get_html(preg_replace('/#comments/i', '', $this->url));
 		}
 		
 		// The pagiation changes if more then a certain number of pages exists. So
@@ -61,8 +61,9 @@ class ForumPostPage extends Scraper
     			if ($found)
     			    $comment->author_class = $matches[1];
 
-    			$date = DateTime::createFromFormat('D, j M Y H:i:s e', trim($post->find('span.post-date abbr', 0)->title));
-    			$comment->comment_time = $date->format('U');
+    			//$date = DateTime::createFromFormat('D, j M Y H:i:s e', trim($post->find('span.post-date abbr', 0)->title));
+    			//$comment->comment_time = $date->format('U');
+    			$comment->comment_time = trim($post->find('span.post-date abbr', 0)->title);
 
     			$this->post_comments[] = $comment;
 			}
